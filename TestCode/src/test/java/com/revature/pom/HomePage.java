@@ -3,6 +3,7 @@ package com.revature.pom;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -47,8 +48,35 @@ public class HomePage extends ParentPOM{
     }
 
     public String getTitle(){
-        return title;
+        return "Home";
     }
+
+    public void selectPlanetDropdown(){
+        Select select = new Select(dropDown);
+        select.selectByValue("Planet");
+    }
+
+    public void selectMoonDropdown(){
+        Select select = new Select(dropDown);
+        select.selectByValue("Moon");
+    }
+
+    public void enterPlanetName(String planetName){
+        planetNameInput.sendKeys(planetName);
+    }
+
+    public void enterMoonName(String moonName){
+        moonNameInput.sendKeys(moonName);
+    }
+
+    public void enterItemToDelete(String bodyName){
+        deleteInput.sendKeys(bodyName);
+    }
+
+    public void clickDelete(){
+        deleteButton.click();
+    }
+
     /*
     public void planetImageInput(?? file){
         planetNameInput.sendKeys(file);

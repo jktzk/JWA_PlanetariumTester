@@ -9,7 +9,7 @@ Feature: Delete Moon
     When the user types in a valid "<moon name>" into the "name for celestial body to be deleted" box
     When the user clicks the "Delete" button
     Then the table should refresh
-    And the planet entry should be deleted
+    And the moon entry should be deleted
 
     Examples:
       |moon name                      |

@@ -6,6 +6,10 @@ import io.cucumber.java.en.When;
 
 public class moonAddSteps {
 
+        @Given("the user starts on their account's home page")
+        public void theUserStartsOnTheirAccountsHomePage() {
+            // Navigate to home page
+        }
 
         @When("the user selects Moon from the drop down")
         public void theUserSelectsMoonFromTheDropDown() {
@@ -13,25 +17,25 @@ public class moonAddSteps {
         }
 
         @When("the user types in a {string} into the {string} box")
-        public void theUserTypesInAValueIntoBox(String value, String boxLabel) {
+        public void theUserAddsMoonName(String value, String boxLabel) {
                 // Input value into box labeled boxLabel (Moon Name or Planet ID)
         }
 
 
         @Then("the user should have access to the correct input boxes for moons")
-        public void theUserShouldHaveAccessToTheCorrectInputBoxesForMoons() {
+        public void AccessToTheCorrectInputBoxesForMoons() {
             // Verify that input boxes are visible and enabled
         }
 
 
 
         @When("optionally, when the user presses {string} and attaches a JPEG or PNG")
-        public void optionallyAttachFile(String buttonLabel) {
+        public void optionallyaAttachFile(String buttonLabel) {
             // Optionally attach JPEG/PNG if file is provided
         }
 
-        @When("the user clicks Submit Moon")
-        public void theUserClicksSubmitMoon() {
+        @When("the user click Submit Moon")
+        public void UserClicksSubmitMoon() {
             // Click the "Submit Moon" button
         }
 
@@ -47,7 +51,7 @@ public class moonAddSteps {
 
         // ========== Invalid moon name ==========
         @When("the user now clicks Submit Moon")
-        public void theUserNowClicksSubmitMoon() {
+        public void clicksSubmitMoon() {
             // Submit Moon with missing or invalid data
         }
 

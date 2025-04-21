@@ -14,9 +14,6 @@ Feature: Planet Add
     Then  the table should refresh
     Then  the planet should be added, with a visible picture if a file was provided
 
-
-
-      #file type here?
     Examples:
       |planet name                      |
       |Mars                             |

@@ -7,8 +7,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class planetAddSteps {
-    @Given("the user is on their account's home page")
-    public void theUserIsOnTheirAccountsHomePage() {
+    @Given("the user begins on their account's home page")
+    public void theUserIBeginsAccountsHomePage() {
         // code to navigate to the user's home page
     }
 
@@ -22,13 +22,13 @@ public class planetAddSteps {
         // code to verify visibility and correctness of input boxes
     }
 
-    @When("the user types in a valid {string} into the {string} box")
-    public void theUserTypesInAValidPlanetNameIntoTheBox(String planetName, String boxName) {
+    @When("the user types in a planet {string} into the {string} box")
+    public void theUserTypesPlanetNameIntoTheBox(String planetName, String boxName) {
         // code to input the planet name into the specified box
     }
 
-    @When("optionally, when the user presses {string} and attaches a JPEG or PNG")
-    public void optionallyWhenTheUserAttachesFile(String buttonName) {
+    @When("optionally, when the user presses {string} and attaches a planet JPEG or PNG")
+    public void optionallyWhenTheUserAttachesPlanetFile(String buttonName) {
         // code to simulate optional file upload (JPEG/PNG)
     }
 
@@ -37,8 +37,8 @@ public class planetAddSteps {
         // code to click the Submit Planet button
     }
 
-    @Then("the table should refresh")
-    public void theTableShouldRefresh() {
+    @Then("the table should planet refresh")
+    public void thePlanetTableShouldRefresh() {
         // code to verify the table refreshed
     }
 

@@ -8,8 +8,8 @@ Feature: Moon Add
     Then  the user should have access to the correct input boxes for moons
 
   Scenario Outline:
-    When  the user types in a valid "<moon name>" into the "Enter Moon Name" box
-    When  the user types in a valid "<planet id>" into the "Enter Orbited Planet Id" box
+    When  the user types in a "<moon name>" into the "Enter Moon Name" box
+    When  the user types in a "<planet id>" into the "Enter Orbited Planet Id" box
     And   optionally, when the user presses "Choose File" and attaches a JPEG or PNG
     When  the user clicks Submit Moon
     Then  the table should refresh
@@ -24,7 +24,7 @@ Feature: Moon Add
 
 
   Scenario Outline:
-    When the user types in an invalid "<moon name>" into the "Enter Moon Name" box
+    When the user types in a "<moon name>" into the "Enter Moon Name" box
     When the user now clicks Submit Moon
     Then the user should receive an alert with the message "Invalid moon name"
 
@@ -37,8 +37,8 @@ Feature: Moon Add
 
 
   Scenario Outline:
-    When the user types in a valid "<moon name>" into the "Enter Moon Name" box
-    When the user types in an invalid "<planet id>" into the "Enter Orbited Planet Id" box
+    When the user types in a "<moon name>" into the "Enter Moon Name" box
+    When the user types in a "<planet id>" into the "Enter Orbited Planet Id" box
     When the user clicks on "Submit Moon"
     Then the user should receive an alert with the message "Invalid planet ID"
 
