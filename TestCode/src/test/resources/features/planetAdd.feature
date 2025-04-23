@@ -9,23 +9,27 @@ Feature: Planet Add
 
   Scenario Outline:
     When  the user types in a "<planet name>" into the Enter Planet Name box
-    #And   optionally, when the user presses Choose File and attaches a JPEG or PNG
+    #JPEG or PNG
+    And   optionally, when the user presses Choose File and attaches a "<image>"
     When  the user clicks Submit Planet
     Then  the table should refresh
     Then  the planet should be added, with a visible picture if a file was provided
 
     Examples:
-      |planet name                      |
-      |Neptune                          |
-      |A                                |
-      |thisshouldbethirtycharachterss   |
-      |jupiter                          |
-      |MARS                             |
-      |_m_e_r_c_u_r_y_                  |
-      | v e n u s                       |
-      |-u-r-a-n-u-s-                    |
-      |1plu20                           |
-      |E 4_r-tH                         |
+      |planet name                      |image|
+      |Neptune                          ||
+      |A                                ||
+      |thisshouldbethirtycharachterss   ||
+      |jupiter                          ||
+      |MARS                             ||
+      |_m_e_r_c_u_r_y_                  ||
+      | v e n u s                       ||
+      |-u-r-a-n-u-s-                    ||
+      |1plu20                           ||
+      |E 4_r-tH                         ||
+      |NewPlanet                        |C:\\Users\\Josh\\Desktop\\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\planetJPEG.jpg|
+      |NewPlanet                        |C:\\Users\\Josh\\Desktop\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\planetPNG.png|
+
 
 
   Scenario Outline:
@@ -34,8 +38,8 @@ Feature: Planet Add
     Then the user should receive an alert with "<message>"
 
     Examples:
-      |planet name                      | message                     |
-      |Earth                            |Invalid planet name |
-      |                                 |Invalid planet name|
-      |thisisoverthirtycharachtersssss  |Invalid planet name|
-      |E!@#$%^&*()_+{}?/                |Invalid planet name|
+      |planet name                      | message              |
+      |Earth                            |Invalid planet name   |
+      |                                 |Invalid planet name   |
+      |thisisoverthirtycharachtersssss  |Invalid planet name   |
+      |E!@#$%^&*()_+{}?/                |Invalid planet name   |

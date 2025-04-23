@@ -45,14 +45,16 @@ public class planetAddSteps {
     public void theUserTypesPlanetNameIntoTheBox(String planetName) {
         homePage.enterPlanetNameAdd(planetName);
         this.nameAdded=planetName;
+
     }
 
-    @When("optionally, when the user presses {string} and attaches a planet JPEG or PNG")
-    public void optionallyWhenTheUserAttachesPlanetFile(String buttonName) {
-        // code to simulate optional file upload (JPEG/PNG)
-        this.imageAdded=true;
+    @When("optionally, when the user presses Choose File and attaches a {string}")
+    public void optionallyWhenTheUserAttachesPlanetFile(String fileName) {
+        if (!(fileName.isEmpty())) {
+            this.imageAdded = true;
+            homePage.enterPlanetImage(fileName);
+        }
     }
-
     @When("the user clicks Submit Planet")
     public void theUserClicksSubmitPlanet() {
         // code to click the Submit Planet button
@@ -71,6 +73,10 @@ public class planetAddSteps {
     public void thePlanetShouldBeAddedWithVisiblePictureIfFileProvided() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
                 .until(ExpectedConditions.visibilityOfElementLocated(By.id("celestialTable")));
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.visibilityOfElementLocated(
+                        By.xpath("//table[@id='celestialTable']//tr[td[text()='" + this.nameAdded + "']]")
+                ));
         List<String> elements = homePage.generateTableElements();
         String visibleImage = "Not Visible";
         //adjusted from hardcoded entries

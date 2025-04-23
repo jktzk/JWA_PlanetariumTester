@@ -6,6 +6,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -15,7 +18,6 @@ public class userLoginSteps {
     public void the_user_starts_on_the_login_page() {
         loginPage.goToLoginPage();
     }
-
     @When("the user provides a username {string} for login")
     public void the_user_provides_username_for_login(String username) {
         loginPage.enterUsername(username);
@@ -45,7 +47,12 @@ public class userLoginSteps {
     */
     @Then("the user should arrive to their account's home page")
     public void the_user_should_arrive_to_their_account_s_home_page() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        new WebDriverWait(driver, Duration.ofSeconds(10)).until(
+                ExpectedConditions.textToBePresentInElementLocated(
+                        By.id("greeting"),  // adjust if your welcome message is not in an <h2>
+                        "Welcome to the Home Page Batman"
+                )
+        );
         Assert.assertEquals(homePage.getTitle(),driver.getTitle());
     }
 

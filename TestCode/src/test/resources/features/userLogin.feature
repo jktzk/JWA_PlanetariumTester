@@ -28,4 +28,4 @@ Feature: User Login
 
     Examples:
       |username                              |password           |message                     |
-      |batdude                               |Iarethenight1939   |Invalid Credentials         |
+      |batdude                               |Iarethenight1939   |Invalid credentials         |

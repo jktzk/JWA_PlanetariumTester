@@ -101,6 +101,10 @@ public class HomePage extends ParentPOM{
         moonNameInput.sendKeys(moonName);
     }
 
+    public void enterPlanetImage(String imageName){planetImageInput.sendKeys(imageName);driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));}
+
+    public void enterMoonImage(String imageName){moonImageInput.sendKeys(imageName);}
+
     public void enterItemToDelete(String bodyName){
         deleteInput.sendKeys(bodyName);
     }
@@ -114,15 +118,17 @@ public class HomePage extends ParentPOM{
     public List<String> generateTableElements(){
         List<String> cellContents = new ArrayList<>();
         List<WebElement> rows = tableOfBodies.findElements(By.tagName("tr"));
-        // Start from 1 to skip the header row
+        // this skips the header row.
+        //loops through entire table and makes a list of elements for verifying in planet and moon steps
         for (int i = 1; i < rows.size(); i++) {
             WebElement row = rows.get(i);
             List<WebElement> cells = row.findElements(By.tagName("td"));
             for (int j = 0; j < cells.size(); j++) {
                 WebElement cell = cells.get(j);
-                if (j == 4) { // 5th column (0-indexed)
+                if (j == 4) {
+                    //checking if image is null
                     String src = cell.getAttribute("src");
-                    if (src == null || src.isEmpty() || src.equals("data:image/jpeg;base64,null")){
+                    if (src.equals("data:image/jpeg;base64,null")){
                         cellContents.add("Not Visible");
                     } else {
                         cellContents.add("Visible");
@@ -130,6 +136,7 @@ public class HomePage extends ParentPOM{
                 } else {
                     cellContents.add(cell.getText().trim());
                 }
+                //making sure loop is ok
                 System.out.println(cellContents);
             }
         }
@@ -146,20 +153,5 @@ public class HomePage extends ParentPOM{
 
 
 
-    /*
-    public void planetImageInput(?? file){
-        planetNameInput.sendKeys(file);
-    }
-    */
-
-
-
-
-
-    /*
-    public void moonImageInput(?? file){
-        moonNameInput.sendKeys(file);
-    }
-    */
 
 
