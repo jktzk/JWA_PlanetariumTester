@@ -66,6 +66,8 @@ public class LoginPage extends ParentPOM{
         usernameInput.sendKeys("Batman");
         passwordInput.sendKeys("Iamthenight1939");
         loginButton.click();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.urlContains("/planetarium")); // Or wait for a homepage-specific element
     }
+
 }

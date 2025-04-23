@@ -9,7 +9,7 @@ public class moonDeletionSteps {
         // ========== Shared Steps ==========
 
 
-        @Given("the user is on their account's home page")
+        @Given("the uaser is on their account's home page")
         public void theUserIsOnTheirAccountsHomePage() {
                 // Navigate to the home page
         }

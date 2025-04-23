@@ -27,5 +27,5 @@ Feature: User Login
     And     the user should remain on the login page
 
     Examples:
-      |username                              |password          |message                     |
+      |username                              |password           |message                     |
       |batdude                               |Iarethenight1939   |Invalid Credentials         |

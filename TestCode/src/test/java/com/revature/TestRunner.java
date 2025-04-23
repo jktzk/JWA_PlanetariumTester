@@ -49,7 +49,7 @@ public class TestRunner {
     //make sure using Junit
     @BeforeClass
     public static void setup(){
-        //here we intiialize the resources and perform any other setup configurations
+        //here we intialize the resources and perform any other setup configurations
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         loginPage = new LoginPage(driver, "Planetarium Login");
