@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class HomePage extends ParentPOM{
 
@@ -75,10 +76,6 @@ public class HomePage extends ParentPOM{
         super(driver,title);alertWait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 
-    public void enterPlanetNameAdd(String planetName){
-        planetNameInput.sendKeys(planetName);
-    }
-
     public String getTitle(){
         return "Home";
     }
@@ -90,20 +87,26 @@ public class HomePage extends ParentPOM{
 
     public void selectMoonDropdown(){
         Select select = new Select(dropDown);
-        select.selectByValue("Moon");
+        select.selectByValue("moon");
     }
 
-    public void enterPlanetName(String planetName){
+    public void enterPlanetNameAdd(String planetName){
         planetNameInput.sendKeys(planetName);
     }
 
-    public void enterMoonName(String moonName){
+    public void enterMoonNameAdd(String moonName){
         moonNameInput.sendKeys(moonName);
     }
+
+    public void enterPlanetIDForMoon(String planetID){orbitedPlanetInput.sendKeys(planetID);}
 
     public void enterPlanetImage(String imageName){planetImageInput.sendKeys(imageName);driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));}
 
     public void enterMoonImage(String imageName){moonImageInput.sendKeys(imageName);}
+
+    public void clickSubmitPlanet(){submitPlanetButton.click();}
+
+    public void clickSubmitMoon(){submitMoonButton.click();}
 
     public void enterItemToDelete(String bodyName){
         deleteInput.sendKeys(bodyName);
@@ -113,7 +116,7 @@ public class HomePage extends ParentPOM{
         deleteButton.click();
     }
 
-    public void clickSubmitPlanet(){submitPlanetButton.click();}
+
 
     public List<String> generateTableElements(){
         List<String> cellContents = new ArrayList<>();
@@ -127,11 +130,18 @@ public class HomePage extends ParentPOM{
                 WebElement cell = cells.get(j);
                 if (j == 4) {
                     //checking if image is null
-                    String src = cell.getAttribute("src");
-                    if (src.equals("data:image/jpeg;base64,null")){
-                        cellContents.add("Not Visible");
+                    //making img another list was the only way i could get this to work
+                    //this was very difficult to figure out, i kept getting null exception errors
+                    List<WebElement> imgs = cell.findElements(By.tagName("img"));
+                    if (!imgs.isEmpty()) {
+                        String src = imgs.get(0).getAttribute("src");
+                        if (src == null || src.contains("base64,null")) {
+                            cellContents.add("Not Visible");
+                        } else {
+                            cellContents.add("Visible");
+                        }
                     } else {
-                        cellContents.add("Visible");
+                        cellContents.add("Not Visible");
                     }
                 } else {
                     cellContents.add(cell.getText().trim());

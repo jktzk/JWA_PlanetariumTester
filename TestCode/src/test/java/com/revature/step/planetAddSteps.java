@@ -38,7 +38,6 @@ public class planetAddSteps {
 
     @Then("the user should have access to the correct input boxes for planets")
     public void theUserShouldHaveAccessToTheCorrectInputBoxesForPlanets() {
-        // code to verify visibility and correctness of input boxes
     }
 
     @When("the user types in a {string} into the Enter Planet Name box")
@@ -57,7 +56,6 @@ public class planetAddSteps {
     }
     @When("the user clicks Submit Planet")
     public void theUserClicksSubmitPlanet() {
-        // code to click the Submit Planet button
         homePage.clickSubmitPlanet();
         this.numberAdded++;
     }
@@ -89,7 +87,6 @@ public class planetAddSteps {
         //Assert.assertEquals(this.nameAdded,elements.get((this.numberAdded*5)+17);
         Assert.assertEquals(visibleImage,elements.get((this.numberAdded*5)+4));
 
-        // code to verify the planet entry and the image (if uploaded)
     }
 
     @Then("the user should receive an alert with {string}")

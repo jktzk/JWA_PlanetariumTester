@@ -8,7 +8,12 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.*;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+import static com.revature.TestRunner.*;
 
 public class planetDeletionSteps {
 
@@ -17,7 +22,12 @@ public class planetDeletionSteps {
 
         @Given("the user is on their account's home page")
         public void theUserIsOnTheirAccountsHomePage() {
-            // Navigate to home page
+            loginPage.goToLoginPage();
+            loginPage.enterUsername("Batman");
+            loginPage.enterPassword("Iamthenight1939");
+            loginPage.clickLoginButton();
+            new WebDriverWait(driver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.titleIs(homePage.getTitle()));
         }
 
         @When("the user selects {string} from the drop down")
