@@ -4,7 +4,7 @@ Feature: Planet Add
     Given the user is on their account's home page
     When  the user selects Planet from the drop down
 
-
+  #happy path
   Scenario Outline:
     When  the user types in a "<planet name>" into the Enter Planet Name box
     #JPEG or PNG
@@ -28,7 +28,7 @@ Feature: Planet Add
       |NewPlanet                        |C:\\Users\\Josh\\Desktop\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\testPNG.png|
 
 
-
+  #sad path
   Scenario Outline:
     When  the user types in a "<planet name>" into the Enter Planet Name box
     When the user clicks Submit Planet

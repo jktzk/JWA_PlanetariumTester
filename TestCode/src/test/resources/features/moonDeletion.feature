@@ -4,7 +4,7 @@ Feature: Delete Moon
     Given the  user is on their account's  home page
 
 
-
+  #happy path
   Scenario Outline:
     When the user selects moon from drop down
     When the  user types in "<moon name>" into the deletion box
@@ -27,7 +27,7 @@ Feature: Delete Moon
       |Earth                            |
 
 
-
+  #sad path
   Scenario Outline:
     When the user selects moon from drop down
     When the  user types in "<moon name>" into the deletion box

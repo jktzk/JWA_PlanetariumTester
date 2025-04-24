@@ -3,11 +3,7 @@ Feature: User Login
   Background:
     Given the user is on the login page
 
-
-  #Scenario: Passwords should be obscured
-   # When  the user types into the password box
-    #Then  their password should remain obscured while typing
-
+  #happy path
   Scenario Outline: Correct credentials should permit login
     When    the user provides a username "<username>" for login
     And     the user provides a password "<password>" for login
@@ -18,7 +14,7 @@ Feature: User Login
       |username                              |password          |
       |Batman                                |Iamthenight1939   |
 
-
+    #sad path
   Scenario Outline: Incorrect credentials should prevent login
     When    the user provides a username "<username>" for login
     And     the user provides a password "<password>" for login

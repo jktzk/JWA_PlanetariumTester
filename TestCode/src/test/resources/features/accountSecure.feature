@@ -1,5 +1,6 @@
 Feature: Account Secure
 
+  #hapy path
   Scenario Outline:
     Given the user begins on the login page
     When the registered user "<user>" signs in with their "<password>"
@@ -9,7 +10,7 @@ Feature: Account Secure
       |Batman                                   |Iamthenight1939   |1   |
       |Superman                                 |Iamop1938         |2   |
 
-
+  #sad path
   Scenario:
     Given the user is on the login page
     When the user directly inputs the url for the planetarium homepage without logging in "http://localhost:8080/planetarium"
@@ -25,7 +26,7 @@ Feature: Account Secure
     Then the user should receive an alert with the message  "<message>"
 
     Examples:
-      |moon name                      |message |
+      |moon name                       |message            |
       |Luna                            |Invalid moon name  |
 
   Scenario Outline:

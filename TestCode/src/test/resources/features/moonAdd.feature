@@ -4,6 +4,7 @@ Feature: Moon Add
     Given the user is on their account's home page
     When  the user selects Moon from the drop down
 
+  #happy path
   Scenario Outline:
     When  the user types in a "<moon name>" into the Enter Moon Name box
     When  the user types in a "<planet id>" into the Enter Orbited Planet ID box
@@ -26,7 +27,7 @@ Feature: Moon Add
       |theMoon                             |1                              |C:\\Users\\Josh\\Desktop\\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\testJPEG.jpg|
       |theMoon                             |1                              |C:\\Users\\Josh\\Desktop\\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\testPNG.png|
 
-
+  #sad path
   Scenario Outline:
     When the user types in a "<moon name>" into the Enter Moon Name box
     When  the user types in a "1" into the Enter Orbited Planet ID box

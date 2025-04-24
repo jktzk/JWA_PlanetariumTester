@@ -4,7 +4,7 @@ Feature: Delete Planet
     Given the user is on their account's  home page
     When the user selects Planet from drop down
 
-
+  #happy path
   Scenario Outline:
     When the user types in "<planet name>" into the deletion box
     When the user clicks the Delete button
@@ -15,7 +15,7 @@ Feature: Delete Planet
       |Earth                            |
 
 
-
+  #sad path
   Scenario Outline:
     When the user types in "<planet name>" into the deletion box
     When the user clicks the Delete button
