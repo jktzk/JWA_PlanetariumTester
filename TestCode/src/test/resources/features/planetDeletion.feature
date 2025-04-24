@@ -1,14 +1,13 @@
 Feature: Delete Planet
 
   Background:
-    Given the user is on their account's home page
-    When the user selects "Planet" from the drop down
+    Given the user is on their account's  home page
+    When the user selects Planet from drop down
 
 
   Scenario Outline:
-    When the user types in a valid "<planet name>" into the "name for celestial body to be deleted" box
-    When the user clicks the "Delete" button
-    Then the table should refresh
+    When the user types in "<planet name>" into the deletion box
+    When the user clicks the Delete button
     And the planet entry should be deleted
 
     Examples:
@@ -18,10 +17,12 @@ Feature: Delete Planet
 
 
   Scenario Outline:
-    When the user types in an invalid "<planet name>" into the "name for celestial body to be deleted" box
-    When the user clicks the "Delete" button
-    Then the user should receive an alert with the message "Invalid planet name"
+    When the user types in "<planet name>" into the deletion box
+    When the user clicks the Delete button
+    Then the user should receive an alert with the message  "<message>"
 
     Examples:
-      |planet name                      |
-      |cat                              |
+      |planet name                      |message            |
+      |cat                              |Invalid planet name|
+       #tests if you can delete other users planet
+      |Mars                             |Invalid planet name|

@@ -4,15 +4,12 @@ Feature: Planet Add
     Given the user is on their account's home page
     When  the user selects Planet from the drop down
 
-  Scenario:
-    Then  the user should have access to the correct input boxes for planets
 
   Scenario Outline:
     When  the user types in a "<planet name>" into the Enter Planet Name box
     #JPEG or PNG
     And   optionally, when the user presses Choose File and attaches a "<image>"
     When  the user clicks Submit Planet
-    Then  the table should refresh
     Then  the planet should be added, with a visible picture if a file was provided
 
     Examples:
@@ -27,8 +24,8 @@ Feature: Planet Add
       |-u-r-a-n-u-s-                    ||
       |1plu20                           ||
       |E 4_r-tH                         ||
-      |NewPlanet                        |C:\\Users\\Josh\\Desktop\\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\planetJPEG.jpg|
-      |NewPlanet                        |C:\\Users\\Josh\\Desktop\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\planetPNG.png|
+      |NewPlanet                        |C:\\Users\\Josh\\Desktop\\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\testJPEG.jpg|
+      |NewPlanet                        |C:\\Users\\Josh\\Desktop\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\testPNG.png|
 
 
 
@@ -43,3 +40,16 @@ Feature: Planet Add
       |                                 |Invalid planet name   |
       |thisisoverthirtycharachtersssss  |Invalid planet name   |
       |E!@#$%^&*()_+{}?/                |Invalid planet name   |
+
+
+   Scenario Outline:
+     When  the user types in a "<planet name>" into the Enter Planet Name box
+    #not JPEG or PNG
+     And   optionally, when the user presses Choose File and attaches a "<image>"
+     When the user clicks Submit Planet
+     Then the user should receive an alert with "<message>"
+     Examples:
+       |planet name                      |image                                                                                                    |message        |
+       |NewPlanet                        |C:\\Users\\Josh\\Desktop\\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\testBMP.bmp |Invalid file type|
+       |NewPlanet                        |C:\\Users\\Josh\\Desktop\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\testTIFF.tiff|Invalid file type|
+       |NewPlanet                        |C:\\Users\\Josh\\Desktop\JWA_PlanetariumTester\\TestCode\\src\\test\\resources\\testImages\\testGIF.gif  |Invalid file type|

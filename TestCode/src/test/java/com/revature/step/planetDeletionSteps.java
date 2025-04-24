@@ -6,21 +6,25 @@ import io.cucumber.java.en.When;
 
 
 import io.cucumber.java.en.*;
+import org.junit.Assert;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static com.revature.TestRunner.*;
+import static org.hamcrest.core.IsNot.not;
+import static org.junit.Assert.assertThat;
 
 public class planetDeletionSteps {
 
+        private String planetToBeDeleted ="";
 
-    public class DeletePlanetSteps {
-
-        @Given("the user is on their account's home page")
+        @Given("the user is on their account's  home page")
         public void theUserIsOnTheirAccountsHomePage() {
             loginPage.goToLoginPage();
             loginPage.enterUsername("Batman");
@@ -30,40 +34,39 @@ public class planetDeletionSteps {
                     .until(ExpectedConditions.titleIs(homePage.getTitle()));
         }
 
-        @When("the user selects {string} from the drop down")
-        public void theUserSelectsFromTheDropDown(String option) {
-            // Select "Planet" from the dropdown
+        @When("the user selects Planet from drop down")
+        public void theUserSelectsFromTheDropDown() {
+            homePage.selectPlanetDropdown();
         }
 
-        @When("the user types in a valid {string} into the {string} box")
-        public void theUserTypesInValidPlanetNameIntoTheBox(String planetName, String boxName) {
-            // Enter valid planet name into the specified input box
+        @When("the user types in {string} into the deletion box")
+        public void the_user_types_in_into_the_deletion_box(String planetName) {
+            this.planetToBeDeleted = planetName;
+            homePage.enterItemToDelete(planetName);
         }
 
-        @When("the user types in an invalid {string} into the {string} box")
-        public void theUserTypesInInvalidPlanetNameIntoTheBox(String planetName, String boxName) {
-            // Enter invalid planet name into the specified input box
+        @When("the user clicks the Delete button")
+        public void the_user_clicks_the_delete_button() {
+            homePage.clickDelete();
         }
 
-        @When("the user clicks the {string} button")
-        public void theUserClicksTheButton(String buttonText) {
-            // Click the "Delete" button
-        }
-
-        @Then("the table should refresh")
-        public void theTableShouldRefresh() {
-            // Confirm table has refreshed (e.g. wait for element to reload)
-        }
 
         @Then("the planet entry should be deleted")
         public void thePlanetEntryShouldBeDeleted() {
-            // Check that the planet is no longer in the table
+            new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.id("celestialTable")));
+            List<String> elements = homePage.generateTableElements();
+            assertThat(elements, not(this.planetToBeDeleted));
         }
 
-        @Then("the user should receive an alert with the message {string}")
+        @Then("the user should receive an alert with the message  {string}")
         public void theUserShouldReceiveAnAlertWithTheMessage(String expectedMessage) {
-
+            homePage.waitForAlert();
+            Alert alert = driver.switchTo().alert();
+            String actualMessage = alert.getText();
+            alert.accept();
+            Assert.assertEquals(expectedMessage, actualMessage);
         }
-    }
-
 }
+
+
+

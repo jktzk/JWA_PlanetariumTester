@@ -68,6 +68,10 @@ public class HomePage extends ParentPOM{
     @FindBy(xpath = "/html/body/div[2]/table/tbody/tr[1]/th[4]")
     private WebElement tableHeaderOwner;
 
+    //greetings
+    @FindBy(xpath = "/html/body/div[1]/h1")
+    private WebElement greeting;
+
 
 
     private WebDriverWait alertWait;
@@ -116,7 +120,7 @@ public class HomePage extends ParentPOM{
         deleteButton.click();
     }
 
-
+    public void attemptDirectLogin(){driver.get("http://localhost:8080/planetarium");}
 
     public List<String> generateTableElements(){
         List<String> cellContents = new ArrayList<>();
@@ -151,6 +155,10 @@ public class HomePage extends ParentPOM{
             }
         }
         return cellContents;}
+
+    public String greetings(){
+        return greeting.getText();
+    }
 
 
     public void waitForAlert() {

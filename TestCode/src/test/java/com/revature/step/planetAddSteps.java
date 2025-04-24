@@ -36,9 +36,6 @@ public class planetAddSteps {
         homePage.selectPlanetDropdown();
     }
 
-    @Then("the user should have access to the correct input boxes for planets")
-    public void theUserShouldHaveAccessToTheCorrectInputBoxesForPlanets() {
-    }
 
     @When("the user types in a {string} into the Enter Planet Name box")
     public void theUserTypesPlanetNameIntoTheBox(String planetName) {
@@ -61,20 +58,11 @@ public class planetAddSteps {
     }
 
 
-    @Then("the table should planet refresh")
-    public void thePlanetTableShouldRefresh() {
-        // code to verify the table refreshed
-    }
-
-
     @Then("the planet should be added, with a visible picture if a file was provided")
     public void thePlanetShouldBeAddedWithVisiblePictureIfFileProvided() {
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.id("celestialTable")));
-        new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.visibilityOfElementLocated(
-                        By.xpath("//table[@id='celestialTable']//tr[td[text()='" + this.nameAdded + "']]")
-                ));
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.id("celestialTable")));
+        //very hacky
+        new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table[@id='celestialTable']//tr[td[text()='" + this.nameAdded + "']]")));
         List<String> elements = homePage.generateTableElements();
         String visibleImage = "Not Visible";
         //adjusted from hardcoded entries

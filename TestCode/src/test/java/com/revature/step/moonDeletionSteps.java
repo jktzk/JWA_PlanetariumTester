@@ -3,55 +3,71 @@ package com.revature.step;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
+
+import static com.revature.TestRunner.*;
+import static org.hamcrest.core.IsNot.not;
+import static org.junit.Assert.assertThat;
 
 public class moonDeletionSteps {
 
-        // ========== Shared Steps ==========
+        private String moonToBeDeleted ="";
 
-
-        @Given("the uaser is on their account's home page")
+        @Given("the  user is on their account's  home page")
         public void theUserIsOnTheirAccountsHomePage() {
-                // Navigate to the home page
+                loginPage.goToLoginPage();
+                loginPage.enterUsername("Batman");
+                loginPage.enterPassword("Iamthenight1939");
+                loginPage.clickLoginButton();
+                new WebDriverWait(driver, Duration.ofSeconds(5))
+                        .until(ExpectedConditions.titleIs(homePage.getTitle()));
         }
 
-        @When("the user selects {string} from the drop down")
-        public void theUserSelectsFromTheDropDown(String option) {
-                // Select "Moon" from dropdown
+        @When("the user selects moon from drop down")
+        public void theUserSelectsMoonsFromTheDropDown() {
+                homePage.selectMoonDropdown();
         }
 
-        // ========== Valid Deletion Scenario ==========
-
-        @When("the user types in a valid {string} into the {string} box")
-        public void theUserTypesInAValidMoonNameIntoTheBox(String moonName, String boxLabel) {
-                // Type valid moon name into specified input box
+        @When("the user selects  planet from drop down")
+        public void theUserSelectsplanetFromTheDropDown() {
+                homePage.selectPlanetDropdown();
         }
 
-        @When("the user clicks the {string} button")
-        public void theUserClicksTheButton(String buttonText) {
-                // Click the "Delete" button
+        @When("the  user types in {string} into the deletion box")
+        public void the_user_types_in_into_the_deletion_box(String moonName) {
+                this.moonToBeDeleted = moonName;
+                homePage.enterItemToDelete(moonName);
         }
 
-        @Then("the table moon should refresh")
-        public void moontheTableShouldRefresh() {
-                // Confirm that the moon table refreshed
+        @When("the  user clicks the Delete button")
+        public void the_user_clicks_the_delete_button() {
+                homePage.clickDelete();
         }
 
-        @Then("the planet entry should be deleted")
+
+        @Then("the moon entry should be deleted")
         public void theMoonEntryShouldBeDeleted() {
-                // Assert that the moon (not planet, despite wording) has been deleted
+                new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOfElementLocated(By.id("celestialTable")));
+                List<String> elements = homePage.generateTableElements();
+                assertThat(elements, not(this.moonToBeDeleted));
         }
 
-        // ========== Invalid Deletion Scenario ==========
-
-        @When("the user types in an invalid {string} into the {string} box")
-        public void theUserTypesInAnInvalidMoonNameIntoTheBox(String moonName, String boxLabel) {
-                // Type invalid moon name into input
+        @Then("the  user should receive an alert with the message  {string}")
+        public void theUserShouldReceiveAnAlertWithTheMessage(String expectedMessage) {
+                homePage.waitForAlert();
+                Alert alert = driver.switchTo().alert();
+                String actualMessage = alert.getText();
+                alert.accept();
+                Assert.assertEquals(expectedMessage, actualMessage);
         }
 
-        @Then("the user should receive a deleted alert with the message {string}")
-        public void alertMessageDeleted(String expectedMessage) {
-
-        }
 }
 
 

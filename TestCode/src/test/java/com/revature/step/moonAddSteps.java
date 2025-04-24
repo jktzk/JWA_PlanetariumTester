@@ -38,10 +38,6 @@ public class moonAddSteps {
                 homePage.selectMoonDropdown();
         }
 
-        @Then("the user should have access to the correct input boxes for moons")
-        public void AccessToTheCorrectInputBoxesForMoons() {
-        }
-
         @When("the user types in a {string} into the Enter Moon Name box")
         public void theUserAddsMoonName(String moonName) {
                 homePage.enterMoonNameAdd(moonName);
@@ -72,11 +68,6 @@ public class moonAddSteps {
                 this.numberAdded++;
         }
 
-
-        @Then("the table should refresh")
-        public void theTableShouldRefresh() {
-            // Wait for the table to refresh (e.g., using ExpectedConditions)
-        }
 
         @Then("the moon should be added, with a visible picture if a file was provided")
         public void theMoonShouldBeAddedWithPictureIfProvided() {

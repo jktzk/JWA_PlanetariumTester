@@ -1,27 +1,43 @@
 Feature: Delete Moon
 
   Background:
-    Given the user is on their account's home page
-    When the user selects "Moon" from the drop down
+    Given the  user is on their account's  home page
+
 
 
   Scenario Outline:
-    When the user types in a valid "<moon name>" into the "name for celestial body to be deleted" box
-    When the user clicks the "Delete" button
-    Then the table should refresh
+    When the user selects moon from drop down
+    When the  user types in "<moon name>" into the deletion box
+    When the  user clicks the Delete button
     And the moon entry should be deleted
 
     Examples:
       |moon name                      |
-      |Luna                           |
+      |Luna                            |
+
+    #parent moon
+  Scenario Outline:
+    When the user selects  planet from drop down
+    When the  user types in "<planet name>" into the deletion box
+    When the  user clicks the Delete button
+    And the moon entry should be deleted
+
+    Examples:
+      |planet name                      |
+      |Earth                            |
 
 
 
   Scenario Outline:
-    When the user types in an invalid "<moon name>" into the "name for celestial body to be deleted" box
-    When the user clicks the "Delete" button
-    Then the user should receive an alert with the message "Invalid moon name"
+    When the user selects moon from drop down
+    When the  user types in "<moon name>" into the deletion box
+    When the  user clicks the Delete button
+    Then the  user should receive an alert with the message  "<message>"
 
     Examples:
-      |moon name                      |
-      |dog                            |
+      |moon name                        |message            |
+      |dog                              |Invalid moon name  |
+      #tests if you can delete other users moon
+      |Titan                            |Invalid moon name  |
+
+

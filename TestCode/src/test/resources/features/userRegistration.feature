@@ -22,6 +22,8 @@ Feature: User Registration
       |thisshouldbethirtycharachterts       |bObb1                                |Account created successfully|
       |Ro_3-5                               |bObb1                                |Account created successfully|
       |Robin                                |Thisshouldbethirtycharcters3         |Account created successfully|
+      |Robin                                |bobb-1                              |Account created successfully|
+      |Robin                                |bob_b1                              |Account created successfully|
       |Robin                                |bob_b-1                              |Account created successfully|
 
 
