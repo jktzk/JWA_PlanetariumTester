@@ -1,6 +1,5 @@
 Feature: User Registration
 
-  #any starting steps shared between ALL scenarios/scenario outlines can be declared in a Background
   Background:
     Given  the user is on the login page
     When   the user clicks the register link
@@ -30,16 +29,12 @@ Feature: User Registration
 
   # Sad Path Scenario
   Scenario Outline: Invalid credential data should not allow for registering with the Planetarium
-    # "<>" injects different values of test data. looks to data table with column called "<name>"
     When    the user provides username "<username>" for registration
     And     the user provides password "<password>" for registration
     When    user clicks the create button
     Then    an alert should appear saying "<message>"
     And     the user should remain on the register page
 
-
-    # Examples is used to create a data table that Cucumber will look to for test data during runtime
-    # for each row of data, Cucumber will execute the associated Scenario Outline
 
     Examples:
       |username                                     |password                                   |message         |

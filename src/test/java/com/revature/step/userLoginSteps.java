@@ -31,25 +31,12 @@ public class userLoginSteps {
         loginPage.clickLoginButton();
     }
 
-    /* Happy Path
-    @Then("their password should remain obscured while typing")
-    public void their_password_should_remain_obscured_while_typing() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
 
-    }
-
-    @When("the user types into the password box")
-    public void the_user_types_into_the_password_box() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
-    }
-    */
     @Then("the user should arrive to their account's home page")
     public void the_user_should_arrive_to_their_account_s_home_page() {
         new WebDriverWait(driver, Duration.ofSeconds(10)).until(
                 ExpectedConditions.textToBePresentInElementLocated(
-                        By.id("greeting"),  // adjust if your welcome message is not in an <h2>
+                        By.id("greeting"),
                         "Welcome to the Home Page Batman"
                 )
         );

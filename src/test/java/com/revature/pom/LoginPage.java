@@ -11,8 +11,6 @@ import java.time.Duration;
 public class LoginPage extends ParentPOM{
 
 
-    //reference to my login page
-
 
     private String url = String.format("http://%s/",System.getenv("PLANETARIUM_URL"));
     private WebDriverWait alertWait;
