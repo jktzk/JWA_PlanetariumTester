@@ -2,21 +2,25 @@ DEFECTS:
 
 SEV, PRIO
  
-Different user can delete other users moon    								HIGH,HIGH
-un registered users can delete other users moons      					        	HIGH,HIGH
-Un registered users can access homepage directly via url "http://localhost:8080/planetarium"   	 	HIGH,HIGH
+Different user can delete other users moon    							                                                    	HIGH,HIGH
+un registered users can delete other users moons      					                                              	HIGH,HIGH
+Un registered users can access homepage directly via url "http://localhost:8080/planetarium"   	         	HIGH,HIGH
 
 
 
 
-Pngs cannot be uploaded and do not allow for planet or moon creation 	       				 med,med
+Pngs cannot be uploaded and do not allow for planet or moon creation 	       		                         		 med,med
 
-wrong image file types do not display error for planets and moons       				 low,low
+wrong image file types do not display error for planets and moons       		                              		 low,low
 
-Added moons's id values do not equal their parent planets						 med,med
+Added moons's id values do not equal their parent planets						                                            med,med
+
+no error message when attempting account creation with username already registered in data base      			 	 low,low
+
+dashes and underscore charachters considered invalid for password creation but should be allowed   	       low,low
 
 
-dashes and underscore charachters considered invalid for password creation but should be allowed   	 low,low
+
 
 
 
